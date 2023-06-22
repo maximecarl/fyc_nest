@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+
+## =============================================================
+## GATEWAY
+## =============================================================
+#
+#  gateway:
+#    image: node:alpine
+#    working_dir: /user/src/app
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#      - ./gateway:/user/src/app
+#    ports:
+#        - "3002:3002"
+#
+## =============================================================
+## MICROSERVICES
+## =============================================================
+#        
+## USERS
+#  users:
+#    image: node:alpine
+#    working_dir: /user/src/app
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#      - ./users-application:/user/src/app
+#    ports:
+#        - "3000:3000"
+#    command: sh -c "npm run start:dev"
+#
+## REQUESTS
+#  requests:
+#    image: node:alpine
+#    working_dir: /user/src/app
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#      - ./requests-application:/user/src/app
+#    ports:
+#        - "3001:3001"
+#    command: sh -c "npm run start:dev"
+
+
+# =============================================================
+# DATABASE
+# =============================================================
+
+  database:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+    volumes:
+      - ./postgres:/var/lib/postgresql/data

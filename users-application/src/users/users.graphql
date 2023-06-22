@@ -1,0 +1,34 @@
+type User @key(fields: "id") {
+  id: ID!
+  name: String!
+  email: String!
+  roles: [String]
+}
+
+type AuthPayload {
+  token: String!
+}
+
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+  verifyPassword: String!
+}
+
+input RolesInput {
+  userId: ID!
+  roles: [String]
+}
+
+extend type Query {
+  getUser(id: ID!): User
+  login(email: String!, password: String!): AuthPayload
+  profile: User
+}
+
+extend type Mutation {
+  register(input: RegisterInput): AuthPayload
+  addRoles(input: RolesInput): User
+  removeRoles(input: RolesInput): User
+}

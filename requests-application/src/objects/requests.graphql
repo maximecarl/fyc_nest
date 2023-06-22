@@ -1,0 +1,30 @@
+type Request @key(fields: "id") {
+  id: ID!
+  title: String!
+  price: Float!
+  status: String!
+  userId: Int!
+  user: User
+}
+
+input RequestInput {
+  id: Int
+  title: String!
+  price: Float!
+}
+
+extend type User @key(fields: "id") {
+  id: ID! @external
+  requests: [Request]
+}
+
+extend type Query {
+  getRequest(id: ID!): Request
+  getRequests: [Request]
+}
+
+extend type Mutation {
+  createRequest(input: RequestInput): Request
+  updateRequest(input: RequestInput): Request
+  deleteRequest(id: ID!): Request
+}

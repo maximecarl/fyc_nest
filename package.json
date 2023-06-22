@@ -1,0 +1,14 @@
+{
+  "name": "deathliveroo",
+  "version": "1.0.0",
+  "description": "You need to run those two commands to install the project\r ```bash\r docker compose up -d \r ```\r ```bash\r docker compose exec node npm install\r ```\r ```bash\r docker compose exec node npm run start:dev\r ```\r ```bash\r docker compose exec node npx prisma migrate dev --name init\r ```\r ```bash\r docker compose exec node npx prisma generate\r ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "./scripts/install.sh",
+    "install:auth": "./scripts/install_auth.sh",
+    "install:prisma": "./scripts/install_prisma.sh"
+  },
+  "author": "",
+  "license": "ISC"
+}
